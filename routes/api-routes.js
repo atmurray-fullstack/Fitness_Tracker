@@ -1,10 +1,11 @@
 const db = require("../models");
+const { ESRCH } = require("constants");
 
 module.exports = (app) => {
 
     ///////////////////  GETS   /////////////////////////////////
     app.get("/api/workouts", (req, res) => {
-        db.Workout.find({}).then(data => {
+        db.Workout.find({}).sort({ "_id": -1 }).limit(1).then(data => {
             console.log(data)
             res.json(data)
         })
@@ -31,4 +32,11 @@ module.exports = (app) => {
         )
     });
 
+    ///////////// POSTS  //////////////////
+    app.post("api/workouts", (req, res) => {
+        db.Workout.create(req.body)
+            .then(data => {
+                res.json(data)
+            });
+    })
 };
