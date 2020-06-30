@@ -7,7 +7,6 @@ module.exports = (app) => {
     ///////////////////  GETS   /////////////////////////////////
     app.get("/api/workouts", (req, res) => {
         db.Workout.find({}).then(data => {
-            console.log(data)
             res.json(data)
         })
     });
@@ -33,7 +32,6 @@ module.exports = (app) => {
                 "$push": { exercises: req.body }
             }
         ).then(data => {
-            console.log(data + "=".repeat(80))
             res.json(data)
         }).catch(err => {
             console.log(err);

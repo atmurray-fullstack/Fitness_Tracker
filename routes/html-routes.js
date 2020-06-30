@@ -1,7 +1,6 @@
 const path = require("path")
 
 module.exports = (app) => {
-    console.log("=".repeat(25) + "html-routes")
 
     app.get("/", (req, res) => {
         res.sendFile(path.join(__dirname, "/public/index.html"));
